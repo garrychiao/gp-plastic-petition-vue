@@ -26,3 +26,18 @@ $secondary-color: #644837;
 .inlight {
     color: $primary-color;
 }
+
+html {
+    font-size: 16px;
+}
+@media (min-width: 1200px) and (max-width: 1919px) {
+    html {
+        font-size: 12px !important;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    html {
+        font-size: 10px !important;
+    }
+}

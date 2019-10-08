@@ -88,12 +88,11 @@ export default {
 
 <style>
 #app {
-  font-family: '', Helvetica, Arial, sans-serif;
+  font-family: 'NotoSansCJKtc-Regular', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 body {
-  font-size: 16px;
   margin: unset;
   letter-spacing: 2.5pt;
   line-height: 1.8;
