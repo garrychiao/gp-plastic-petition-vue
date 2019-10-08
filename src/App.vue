@@ -51,7 +51,9 @@
         <Footer></Footer>
       </el-col>
     </el-row>
-
+    <div class="form">
+      <Form></Form>
+    </div>
   </div>
 </template>
 
@@ -65,6 +67,7 @@ import Promise from './views/Promise.vue'
 import Responsibility from './views/Responsibility.vue'
 import LastImg from './views/LastImg.vue'
 import Footer from './views/Footer.vue'
+import Form from './views/Form.vue'
 
 export default {
   name: 'app',
@@ -78,6 +81,7 @@ export default {
     Responsibility,
     LastImg,
     Footer,
+    Form,
   }
 }
 </script>
@@ -93,5 +97,12 @@ body {
   margin: unset;
   letter-spacing: 2.5pt;
   line-height: 1.8;
+}
+.form {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 36vw;
+  border: 1px solid black;
 }
 </style>
