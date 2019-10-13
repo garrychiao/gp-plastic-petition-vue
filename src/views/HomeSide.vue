@@ -42,4 +42,32 @@ export default {
     padding: 0 22% 10% 10%;
   }
 }
+@media (max-width: 1919px) and (min-width: 992px) {
+  .home-side {
+    .icon {
+      padding: 5% 10% 5% 10%;
+      img {
+        width: 30px;
+      }
+    }
+  }
+}
+@media (max-width: 991px) {
+  .home-side {
+    position: relative;
+    z-index: 200;
+    margin-top: -50px;
+    height: auto;
+    width: 60%;
+    .icon {
+      padding: 10% 10% 0 0;
+      img {
+        width: 25px;
+      }
+    }
+    .content {
+      padding: 0 6% 10% 6%;
+    }
+  }
+}
 </style>

@@ -42,7 +42,6 @@ export default {
   overflow: hidden;
   p {
     margin: unset;
-    font-size: 1.5rem;
   }
   .content-header {
     padding-left: 5%;
@@ -51,6 +50,7 @@ export default {
     color: #644837;
     text-align: center;
     p {
+      font-size: 1.5rem;
       position: relative;
       top: 50%;
       transform: translateY(-50%);
@@ -87,6 +87,7 @@ export default {
       }
     }
     .info {
+      font-size: 1.5rem;
       position: relative;
       top: 50%;
       transform: translateY(-50%);
@@ -98,7 +99,57 @@ export default {
         background-size: 102% 102%;
       }
     }
-    
   }
 }
+@media (max-width: 991px) {
+  .compare {
+    padding-top: 10px;
+    overflow: hidden;
+    .content-header {
+      padding-left: unset;
+      height: auto;
+      p {
+        margin: 10px 0;
+        font-size: 1.5rem;
+      }
+    }
+    .content-container {
+      .floating-subtitle {
+        font-size: 1rem;
+        position: absolute;
+        text-align: left;
+        bottom: 0;
+        left: 0;
+        width: 50%;
+        transform: rotate(-90deg) scale(0.6) translateX(-45px);
+        // transform: rotate(-90deg) scale(0.6) translateY(-30px);
+      }
+      .left {
+        padding-left: unset;
+        height: 40vh;
+        width: 50%;
+      }
+      .right {
+        height: 40vh;
+        width: 50%;
+      }
+      .info {
+        top: 42%;
+        .img-div {
+          width: 30vw;
+          height: 30vw;
+        }
+      }
+    }
+  } 
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .content-container {
+    .floating-subtitle {
+      width: unset !important;
+      transform: rotate(-90deg) scale(0.6) translateY(-30px) !important;
+    }
+  }
+} 
+
 </style>

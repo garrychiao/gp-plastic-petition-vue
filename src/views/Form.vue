@@ -19,6 +19,16 @@ export default {
   position: relative;
   width: 100%;
   height: 40vw;
-  background-color: white;
+  border-radius: 1px;
+  box-shadow: 10px -5px 15px 0 rgba(214, 207, 207, 0.5);
+  background-color: #f9f9f9;
+}
+@media (max-width: 991px) {
+  .form {
+    margin-top: -15vh;
+    padding-top: 16vh;
+    height: 140vh;
+    // border: 1px solid black;
+  } 
 }
 </style>

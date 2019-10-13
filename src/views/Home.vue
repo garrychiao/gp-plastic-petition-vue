@@ -43,4 +43,16 @@ export default {
     }
   }
 }
+@media (max-width: 991px) {
+  .home {
+    z-index: 200;
+    height: 50vh;
+    .title {
+      padding: 60px 25px;
+      .title-1 {
+        height: 30px;
+      }
+    }
+  }
+}
 </style>

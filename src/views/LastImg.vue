@@ -1,6 +1,9 @@
 <template>
   <div class="last-img">
     <p class="EngGoth center">PROTECT OUR ONE AND ONLY EARTH</p>
+    <el-button round class="scroll-btn hidden-md-and-up NotoSansCJKtc-Regular">
+      立即連署
+    </el-button>
   </div>
 </template>
 
@@ -34,5 +37,32 @@ export default {
     border-bottom: 2px solid white;
     font-weight: bold;
   }
+}
+@media (max-width: 991px) {
+  .last-img {
+    height: 74vw;
+    .center {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 1.2rem;
+      border-bottom: 1px solid white;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+    .scroll-btn {
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #eb9062;
+      color: white;
+      letter-spacing: 2pt;
+      font-size: 1.8rem;
+      border-radius: 50px;
+    }
+  } 
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="promise">
     <div class="content-container">
       <el-row type="flex" justify="space-around" class="header">
-        <el-col :span="16">
+        <el-col :md="16" :xs="24" :sm="24">
           <p class="NotoSansCJKtc-Regular">我們鼓勵零售商怎麼做？</p>
           <p class="NotoSansCJKtc-Regular">【希望臺灣十大連鎖賣場公開承諾】</p>
         </el-col>
@@ -97,6 +97,49 @@ export default {
       .text {
         padding-top: 9%;
         font-size: 1.2rem;
+      }
+    }
+  }
+}
+@media (max-width: 991px) {
+  .promise {
+    height: auto;
+    padding: 10% 0 20% 0;
+    letter-spacing: 3pt;
+    .content-container {
+      .header {
+        line-height: 2;
+        font-size: 1.7rem;
+      }
+      .item {
+        margin-top: 10%;
+        padding: 0 12% 0 16%;
+        .emphasis {
+          font-size: 5rem;
+          line-height: 1;
+        }
+        .subtitle {
+          padding-top: 9%;
+          font-size: 1.5rem;
+        }
+        .text {
+          padding-top: 9%;
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 768px) and (max-width: 991px) {
+  .promise {
+    .content-container {
+      .item {
+        .subtitle {
+          padding-top: 4%;
+        }
+        .text {
+          padding-top: 4%;
+        }
       }
     }
   }
