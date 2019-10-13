@@ -15,7 +15,8 @@
     </el-row>
     <!-- form -->
     <div class="form-container">
-      <Form></Form>
+      <component :is="formComponent" v-on:thankYou="toThankYou"></component>
+      <!-- <Form ></Form> -->
     </div>
     <!-- compare -->
     <el-row id="compare" type="flex">
@@ -72,6 +73,7 @@ import Responsibility from './views/Responsibility.vue'
 import LastImg from './views/LastImg.vue'
 import Footer from './views/Footer.vue'
 import Form from './views/Form.vue'
+import ThankYou from './views/ThankYou.vue'
 
 export default {
   name: 'app',
@@ -86,6 +88,17 @@ export default {
     LastImg,
     Footer,
     Form,
+    ThankYou,
+  },
+  data() {
+    return {
+      formComponent: Form,
+    }
+  },
+  methods: {
+    toThankYou() {
+      this.formComponent = ThankYou;
+    }
   }
 }
 </script>

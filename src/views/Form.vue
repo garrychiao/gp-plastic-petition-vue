@@ -47,7 +47,7 @@
           label-position="top"
           class="NotoSansCJKtc-Regular">
           <el-form-item label="電子信箱" prop="email" required>
-            <el-input placeholder="greenpeace@gmail.com" v-model="ruleForm.name"></el-input>
+            <el-input placeholder="greenpeace@gmail.com" v-model="ruleForm.email"></el-input>
           </el-form-item>
           <el-row :gutter="30">
             <el-col :span="10">
@@ -97,6 +97,9 @@
 </template>
 
 <script>
+import axios from 'axios';
+import dayjs from 'dayjs';
+
 export default {
   name: 'Form',
   props: {
@@ -114,20 +117,56 @@ export default {
       },
       rules: {
         email: [
-          { required: true, message: '請輸入電子郵件', trigger: 'blur' },
+          { type:"email", required: true, message: '請輸入電子郵件', trigger: 'blur' },
         ],
         lastName: [
           { required: true, message: '請輸入姓氏', trigger: 'blur' }
         ],
         firstName: [
-          { type: 'date', required: true, message: '請輸入名字', trigger: 'blur' }
+          { required: true, message: '請輸入名字', trigger: 'blur' }
         ],
         phone: [
-          { type: 'date', required: true, message: '請輸入電話', trigger: 'blur' }
+          { required: true, message: '請輸入電話', trigger: 'blur' }
         ],
         yearOfBirth: [
           { type: 'date', required: true, message: '請選擇出生年份', trigger: 'blur' }
         ],
+      }
+    }
+  },
+  methods: {
+    submitForm(formName) {
+      this.$emit('thankYou');
+      this.$refs[formName].validate((valid) => {
+        if (!valid) {
+          console.log('error submit!!');
+          return false;
+        }
+        this.postForm();
+      });
+    },
+    async postForm () {
+      try {
+
+        let year = dayjs(this.ruleForm.yearOfBirth).format('YYYY');
+
+        let formData = new URLSearchParams();
+        formData.append("sessionId", "2dcf24eb7e5544d6aff3d40c16e9adcf-server10008");
+        formData.append("supporter.emailAddress", this.ruleForm.email);
+        formData.append("supporter.lastName", this.ruleForm.lastName);
+        formData.append("supporter.firstName", this.ruleForm.firstName);
+        formData.append("supporter.phoneNumber", this.ruleForm.phoneNumber);
+        formData.append("supporter.NOT_TAGGED_6", year);
+        formData.append("supporter.questions.7276", this.ruleForm.moreInfo);
+
+        let res = await axios.post('https://act.greenpeace.org/page/40031/petition/2', formData);
+        // let response = res.data;
+        console.log(res);
+
+        this.$emit('thankYou');
+
+      } catch (err) {
+        console.log(err);
       }
     }
   }
@@ -170,7 +209,7 @@ export default {
       }
       .checkbox-text {
         font-size: 0.8rem;
-        padding-top: 10px;
+        // padding-top: 10px;
       }
       .submit-btn-container {
         width: 100%;
