@@ -14,7 +14,7 @@
       </el-col>
     </el-row>
     <!-- form -->
-    <div class="form">
+    <div class="form-container">
       <Form></Form>
     </div>
     <!-- compare -->
@@ -99,7 +99,7 @@ export default {
 body {
   margin: unset;
 }
-.form {
+.form-container {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -108,7 +108,7 @@ body {
   /* border: 1px solid black; */
 }
 @media (max-width: 991px) {
-  .form {
+  .form-container {
     position: relative;
     width: 100%;
     z-index: 100;

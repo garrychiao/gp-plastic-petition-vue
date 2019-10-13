@@ -5,10 +5,12 @@ $secondary-color: #644837;
     font-family: EngGoth;
     src: url('../fonts/EngGoth.ttf');
 }
+
 @font-face {
     font-family: NotoSansCJKtc-Regular;
     src: url('../fonts/NotoSansCJKtc-Regular.otf');
 }
+
 @font-face {
     font-family: NotoSansCJKtc-Medium;
     src: url('../fonts/NotoSansCJKtc-Medium.otf');
@@ -17,12 +19,15 @@ $secondary-color: #644837;
 .EngGoth {
     font-family: EngGoth;
 }
+
 .NotoSansCJKtc-Regular {
     font-family: NotoSansCJKtc-Regular !important;
 }
+
 .NotoSansCJKtc-Medium {
     font-family: NotoSansCJKtc-Medium;
 }
+
 .inlight {
     color: $primary-color;
 }
@@ -30,11 +35,36 @@ $secondary-color: #644837;
 html {
     font-size: 16px;
 }
+
+* {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important; 
+    -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important; 
+    outline: none !important;
+}
+
 @media (min-width: 1200px) and (max-width: 1919px) {
     html {
         font-size: 12px !important;
         letter-spacing: 2.5pt;
         line-height: 1.8;
+    }
+    .el-form-item {
+        margin-bottom: 12px;
+    }
+    .el-input__inner {
+        border-radius: 0 !important;
+        height: 20px !important;
+        margin-bottom: 0px !important;
+    }
+    .el-form-item__content {
+        line-height: 20px;
+    }
+    .el-form-item__label {
+        height: 20px !important;
+    }
+    .el-form-item__error {   
+        padding-top: unset;
+        padding-left: 10px;
     }
 }
 
@@ -52,4 +82,75 @@ html {
         letter-spacing: 1.5pt;
         line-height: 1.2;
     }
+    .el-input__inner {
+        border-radius: 0 !important;
+        height: 20px !important;
+        margin-bottom: 0px !important;
+    }
+    .el-form-item__error {   
+        padding-top: unset;
+        padding-left: 10px;
+    }
+}
+
+.el-form-item__error {   
+    padding-top: unset;
+    padding-left: 10px;
+}
+
+.el-input__prefix {
+    .el-input__icon {
+        display: none;
+    }
+}
+
+.el-input {
+    font-size: inherit;
+}
+
+.el-form-item__content {
+    font-size: inherit;
+    line-height: 20px;
+}
+.el-form-item__label {
+    font-size: inherit;   
+}
+
+.el-input__inner {
+    background-color: transparent;
+    border-radius: 0;
+    padding: unset !important;
+    margin: 0 10px;
+    overflow: hidden;
+    border: none;
+    border-bottom: 1px solid $secondary-color !important;
+    color: #606266;
+    display: inline-block;
+    font-size: inherit;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.el-input__inner:focus {
+    transition: 0.4s !important;
+    border-bottom: 2px solid $primary-color !important;
+}
+
+.el-form-item__label {
+    padding: 0 !important;
+    height: 30px !important;
+}
+
+.el-checkbox__inner {
+    border: 2px solid #644837 !important;
+}
+
+.el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner {
+    background-color: transparent !important;
+}
+
+.el-checkbox__inner::after {
+    border: 2px solid $primary-color !important;
+    border-left: 0 !important;
+    border-top: 0 !important;
 }

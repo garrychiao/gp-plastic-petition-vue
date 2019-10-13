@@ -40,6 +40,7 @@ export default {
   }
   .content {
     padding: 0 22% 10% 10%;
+    letter-spacing: 3pt;
   }
 }
 @media (max-width: 1919px) and (min-width: 992px) {

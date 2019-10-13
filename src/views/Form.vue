@@ -1,6 +1,98 @@
 <template>
   <div class="form">
-    
+    <div class="content-container">
+      <div class="title">
+        <p class="NotoSansCJKtc-Regular">立即連署，要求各大超市賣場，減少塑膠包裝！</p>
+      </div>
+      <div class="subtitle">
+        <p class="NotoSansCJKtc-Regular">綠色和平會把你的訴求，轉達給各企業。</p>
+      </div>
+      <div class="marts-icon">
+        <el-row :gutter="10">
+          <el-col :xs="{span: 8}" :sm="{span: 8}" :md="{span: 4, offset: 1}">
+            <img src="@/assets/img/marts/a-mart.png" width="100%" alt="">
+          </el-col>
+          <el-col :xs="{span: 8}" :sm="{span: 8}" :md="{span: 4}">
+            <img src="@/assets/img/marts/family.png" width="100%" alt="">
+          </el-col>
+          <el-col :xs="{span: 8}" :sm="{span: 8}" :md="{span: 4}">
+            <img src="@/assets/img/marts/px-mart.png" width="100%" alt="">
+          </el-col>
+          <el-col :xs="{span: 8}" :sm="{span: 8}" :md="{span: 4}">
+            <img src="@/assets/img/marts/costco.png" width="100%" alt="">
+          </el-col>
+          <el-col :xs="{span: 8}" :sm="{span: 8}" :md="{span: 4}">
+            <img src="@/assets/img/marts/wellcome.png" width="100%" alt="">
+          </el-col>
+          <el-col :xs="{span: 8}" :sm="{span: 8}" :md="{span: 4, offset: 1}">
+            <img src="@/assets/img/marts/simple-mart.png" width="100%" alt="">
+          </el-col>
+          <el-col :xs="{span: 8}" :sm="{span: 8}" :md="{span: 4}">
+            <img src="@/assets/img/marts/rt-mart.png" width="100%" alt="">
+          </el-col>
+          <el-col :xs="{span: 8}" :sm="{span: 8}" :md="{span: 4}">
+            <img src="@/assets/img/marts/711.png" width="100%" alt="">
+          </el-col>
+          <el-col :xs="{span: 8}" :sm="{span: 8}" :md="{span: 4}">
+            <img src="@/assets/img/marts/carrefour.png" width="100%" alt="">
+          </el-col>
+        </el-row>
+      </div>
+      <div class="form-inputs">
+        <el-form 
+          :model="ruleForm" 
+          :rules="rules" 
+          ref="ruleForm" 
+          label-width="120px" 
+          label-position="top"
+          class="NotoSansCJKtc-Regular">
+          <el-form-item label="電子信箱" prop="email" required>
+            <el-input placeholder="greenpeace@gmail.com" v-model="ruleForm.name"></el-input>
+          </el-form-item>
+          <el-row :gutter="30">
+            <el-col :span="10">
+              <el-form-item label="姓氏" prop="lastName" required>
+                <el-input v-model="ruleForm.lastName" placeholder="王"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="14">
+              <el-form-item label="名字" prop="firstName" required>
+                <el-input v-model="ruleForm.firstName" placeholder="小明"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="30">
+            <el-col :xs="24" :md="24" :xl="17">
+              <el-form-item label="電話（0912345678 或 02-23612351）" prop="phone" required>
+                <el-input v-model="ruleForm.phone" placeholder="0912345678"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :xs="12" :md="12" :xl="7">
+              <el-form-item label="出生年份" prop="yearOfBirth" required>
+                <el-date-picker type="year" v-model="ruleForm.yearOfBirth" style="width: 100%;"></el-date-picker>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="15">
+            <el-col :xs="{span: 3, offset: 1}" :sm="{span: 3, offset: 1}" :md="{span: 3, offset: 1}" :xl="{span: 1, offset: 1}">
+              <el-form-item label="" class="check-box">
+                <el-checkbox v-model="ruleForm.moreInfo"></el-checkbox>
+              </el-form-item>
+            </el-col>
+            <el-col :xs="20" :sm="20" :md="20" :xl="21">
+              <p class="checkbox-text">我要即時收到最新專案訊息，知道更多參與和協助的方法。（綠色和平尊重並保障您的個人隱私資料，您隨時可取消訂閱，請參考隱私保護政策。）</p>
+            </el-col>
+          </el-row>
+          <div class="submit-btn-container">
+            <el-form-item>
+              <el-button round class="submit-btn NotoSansCJKtc-Regular" @click="submitForm('ruleForm')">
+                立即連署
+              </el-button>
+            </el-form-item>
+          </div>
+        </el-form>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -9,6 +101,35 @@ export default {
   name: 'Form',
   props: {
     msg: String
+  },
+  data() {
+    return {
+      ruleForm: {
+        email: '',
+        lastName: '',
+        firstName: '',
+        phone: '',
+        yearOfBirth: '',
+        moreInfo: false,
+      },
+      rules: {
+        email: [
+          { required: true, message: '請輸入電子郵件', trigger: 'blur' },
+        ],
+        lastName: [
+          { required: true, message: '請輸入姓氏', trigger: 'blur' }
+        ],
+        firstName: [
+          { type: 'date', required: true, message: '請輸入名字', trigger: 'blur' }
+        ],
+        phone: [
+          { type: 'date', required: true, message: '請輸入電話', trigger: 'blur' }
+        ],
+        yearOfBirth: [
+          { type: 'date', required: true, message: '請選擇出生年份', trigger: 'blur' }
+        ],
+      }
+    }
   }
 }
 </script>
@@ -16,19 +137,131 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .form {
+  p {
+    margin: unset;
+  }
   position: relative;
   width: 100%;
-  height: 40vw;
+  height: auto;
   border-radius: 1px;
   box-shadow: 10px -5px 15px 0 rgba(214, 207, 207, 0.5);
   background-color: #f9f9f9;
+  .content-container {
+    background-color: #f9f9f9;
+    padding: 5% 8% 0;
+    .title {
+      color: #eb9062;
+      font-weight: bold;
+      letter-spacing: 3pt;
+      font-size: 1.4rem;
+    }
+    .subtitle {
+      padding-top: 10px;
+      letter-spacing: 3pt;
+      color: #644837;
+    }
+    .form-inputs {
+      color: #644837;
+      padding: 10px;
+      letter-spacing: 1pt;
+      width: 92%;
+      .check-box {
+        margin-bottom: 10px;
+      }
+      .checkbox-text {
+        font-size: 0.8rem;
+        padding-top: 10px;
+      }
+      .submit-btn-container {
+        width: 100%;
+        text-align: center;
+        padding-top: 20px;
+        padding-bottom: 10px;
+        .submit-btn {
+          background-color: #eb9062;
+          color: white;
+          letter-spacing: 3pt;
+          font-size: 1.2rem;
+          border-radius: 50px;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 992px ) and (max-width: 1919px) {
+  .form {
+    .content-container {
+      .title {
+        color: #eb9062;
+        font-weight: bold;
+        letter-spacing: 3pt;
+        font-size: 1.2rem;
+      }
+      .subtitle {
+        padding-top: 10px;
+        letter-spacing: 3pt;
+      }
+      .form-inputs {
+        padding: 10px;
+        .checkbox-text {
+          font-size: 0.8rem;
+          padding-top: unset;
+        }
+        .submit-btn-container {
+          padding-top: 10px;
+          padding-bottom: 10px;
+          .submit-btn {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  .form {
+    .content-container {
+      .title {
+        font-size: 2.5rem !important;
+        line-height: 1.6;
+      }
+      .subtitle {
+        font-size: 2rem !important;
+        padding-top: 10px;
+        letter-spacing: 3pt;
+      }
+      .form-inputs {
+        font-size: 1.6rem;
+        .submit-btn-container {
+          .submit-btn {
+            font-size: 1.6rem;
+          }
+        }
+      }
+    }
+  }
 }
 @media (max-width: 991px) {
   .form {
-    margin-top: -15vh;
-    padding-top: 16vh;
-    height: 140vh;
-    // border: 1px solid black;
-  } 
+    margin-top: -50vh;
+    padding-top: 52vh;
+    .content-container {
+      .title {
+        font-size: 1.6rem;
+        line-height: 1.6;
+      }
+      .subtitle {
+        padding-top: 10px;
+        letter-spacing: 3pt;
+      }
+      .form-inputs {
+        padding: 10px;
+        .submit-btn-container {
+          padding-top: 40px;
+          padding-bottom: 10px;
+        }
+      }
+    }
+  }
 }
 </style>
