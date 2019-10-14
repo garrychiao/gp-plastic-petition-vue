@@ -84,12 +84,13 @@ html {
     }
     .el-input__inner {
         border-radius: 0 !important;
-        height: 30px !important;
+        height: 25px !important;
+        line-height: 20px !important;
         margin-bottom: 0px !important;
     }
     .el-form-item__content {
         font-size: inherit;
-        line-height: 30px;
+        line-height: 20px;
     }
     .el-form-item__error {   
         padding-top: unset;

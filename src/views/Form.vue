@@ -631,14 +631,16 @@ export default {
 }
 @media (max-width: 991px) {
   .form {
+    font-size: 1.4rem;
     margin-top: -50vh;
     padding-top: 52vh;
     .content-container {
       .title {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         line-height: 1.6;
       }
       .subtitle {
+        font-size: 1.4rem;
         padding-top: 10px;
         letter-spacing: 3pt;
       }
