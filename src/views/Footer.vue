@@ -75,6 +75,9 @@ export default {
 }
 @media (max-width: 991px) {
   .footer {
+    background-image: url('../assets/img/mobile_footer.jpg');
+    background-position: center center;
+    background-size: 101% 101%;
     padding: 0 10px 20px 10px;
     .content-container {
       padding: unset;
