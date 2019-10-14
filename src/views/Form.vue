@@ -493,6 +493,7 @@ export default {
     async postForm() {
       try {
         
+        this.$emit("thankYou");
         let year = dayjs(this.ruleForm.yearOfBirth).format("DD/MM/YYYY");
 
         let formData = new URLSearchParams();
