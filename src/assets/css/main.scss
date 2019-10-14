@@ -123,7 +123,7 @@ html {
     margin: 0 10px;
     overflow: hidden;
     border: none;
-    border-bottom: 1px solid $secondary-color !important;
+    border-bottom: 1px solid $primary-color !important;
     color: #606266;
     display: inline-block;
     font-size: inherit;
@@ -131,10 +131,10 @@ html {
     margin-bottom: 10px;
 }
 
-.el-input__inner:focus {
-    transition: 0.4s !important;
-    border-bottom: 2px solid $primary-color !important;
-}
+// .el-input__inner:focus {
+//     transition: 0.4s !important;
+//     border-bottom: 2px solid $primary-color !important;
+// }
 
 .el-form-item__label {
     padding: 0 !important;
@@ -153,4 +153,6 @@ html {
     border: 2px solid $primary-color !important;
     border-left: 0 !important;
     border-top: 0 !important;
+    height: 5px !important;
+    left: 3px !important;
 }
