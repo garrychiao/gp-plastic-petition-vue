@@ -57,7 +57,7 @@ export default {
   .home-side {
     position: relative;
     z-index: 200;
-    margin-top: -50px;
+    margin-top: -10vh;
     height: auto;
     width: 60%;
     .icon {

@@ -59,6 +59,7 @@ export default {
   .content-container {
     .floating-subtitle {
       font-size: 1.2rem;
+      letter-spacing: 3pt;
       position: absolute;
       top: 31vw;
       margin-left: -7vw;
@@ -116,6 +117,7 @@ export default {
     .content-container {
       .floating-subtitle {
         font-size: 1rem;
+        letter-spacing: 1pt;
         position: absolute;
         text-align: left;
         bottom: 0;
