@@ -48,24 +48,24 @@
           class="NotoSansCJKtc-Regular"
           >
           <el-form-item label="電子信箱" prop="email" required>
-            <el-input placeholder="greenpeace@gmail.com" v-model="ruleForm.email"></el-input>
+            <el-input autocomplete="on" placeholder="greenpeace@gmail.com" v-model="ruleForm.email"></el-input>
           </el-form-item>
           <el-row :gutter="30">
             <el-col :span="10">
               <el-form-item label="姓氏" prop="lastName" required>
-                <el-input v-model="ruleForm.lastName" placeholder="王"></el-input>
+                <el-input autocomplete="on" v-model="ruleForm.lastName" placeholder="王"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="14">
               <el-form-item label="名字" prop="firstName" required>
-                <el-input v-model="ruleForm.firstName" placeholder="小明"></el-input>
+                <el-input autocomplete="on" v-model="ruleForm.firstName" placeholder="小明"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row :gutter="30">
             <el-col :xs="24" :md="24" :xl="17">
               <el-form-item label="電話（0912345678 或 02-23612351）" prop="phone" required>
-                <el-input v-model="ruleForm.phone" placeholder="0912345678"></el-input>
+                <el-input autocomplete="on" v-model="ruleForm.phone" placeholder="0912345678"></el-input>
               </el-form-item>
             </el-col>
             <el-col :xs="12" :md="12" :xl="7">
