@@ -1,6 +1,6 @@
 <template>
   <div class="form">
-    <div class="content-container">
+    <div class="content-container" id="form-container">
       <div class="title">
         <p class="NotoSansCJKtc-Regular">立即連署，要求各大超市賣場，減少塑膠包裝！</p>
       </div>

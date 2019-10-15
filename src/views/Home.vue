@@ -25,7 +25,7 @@ export default {
   methods: {
     directTo(url) {
       window.location.href = url;
-    }
+    },
   }
 }
 </script>

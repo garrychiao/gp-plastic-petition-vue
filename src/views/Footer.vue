@@ -16,7 +16,7 @@
         <el-col :xs="24" :md="9" :offset="1">
           <el-row :gutter="15">
             <el-col :sm="12" :lg="6">
-              <el-button plain round class="footer-btn">
+              <el-button plain round class="footer-btn" @click="openLink('https://www.greenpeace.org/taiwan')">
                 主頁
               </el-button>
             </el-col>
@@ -28,12 +28,12 @@
           </el-row>
           <el-row :gutter="15">
             <el-col :sm="24" :xl="6">
-              <el-button plain round class="footer-btn">
-                捐助支持
+              <el-button plain round class="footer-btn" @click="openLink('http://act.greenpeace.org/page/45804/donate/1')">
+                支持我們
               </el-button>
             </el-col>
             <el-col :sm="24" :xl="17" class="hidden-xl-only">
-              <el-button plain round class="footer-btn">
+              <el-button plain round class="footer-btn" @click="openLink('https://www.greenpeace.org/taiwan/policies/privacy-and-cookies')">
                 隱私政策與個人資料收集聲明
               </el-button>
             </el-col>
@@ -49,6 +49,15 @@ export default {
   name: 'Footer',
   props: {
     msg: String
+  },
+  methods: {
+    openLink (link) {
+      // console.log(link)
+      window.open(
+        link + "?utm_campaign=2019-plastic_retailer&utm_source=change.greenpeace.org.tw&utm_medium=referral&utm_content=footer_link",
+        '_blank'
+      )
+    }
   }
 }
 </script>
@@ -76,8 +85,8 @@ export default {
 @media (max-width: 991px) {
   .footer {
     background-image: url('../assets/img/mobile_footer.jpg');
-    background-position: center center;
-    background-size: 101% 101%;
+    background-position: center bottom;
+    background-size: cover;
     padding: 0 10px 20px 10px;
     .content-container {
       padding: unset;
