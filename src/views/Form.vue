@@ -171,6 +171,7 @@ export default {
 
     },
     submitForm(formName) {
+      this.$emit("thankYou");
       this.$refs[formName].validate(valid => {
         if (!valid) {
           console.log("error submit!!");

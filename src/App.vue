@@ -14,7 +14,7 @@
       </el-col>
     </el-row>
     <!-- form -->
-    <div class="form-container">
+    <div class="form-container" >
       <component :is="formComponent" v-on:thankYou="toThankYou"></component>
       <!-- <Form ></Form> -->
     </div>
@@ -74,6 +74,7 @@ import LastImg from './views/LastImg.vue'
 import Footer from './views/Footer.vue'
 import Form from './views/Form.vue'
 import ThankYou from './views/ThankYou.vue'
+import {scroller} from 'vue-scrollto/src/scrollTo'
 
 export default {
   name: 'app',
@@ -98,6 +99,9 @@ export default {
   methods: {
     toThankYou() {
       this.formComponent = ThankYou;
+      // console.log('scroll to')
+      const firstScrollTo = scroller();
+      firstScrollTo('#form-container');
     }
   }
 }
