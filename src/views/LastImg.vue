@@ -1,11 +1,13 @@
 <template>
   <div class="last-img">
     <div class="center">
-      <p class="NotoSansCJKtc-Regular title">地球只有一個<br>而你可以守護它</p>
-      <p class="EngGoth title-eng">PROTECT OUR ONE AND ONLY EARTH</p>
       <el-button round class="scroll-btn hidden-md-and-up NotoSansCJKtc-Regular" v-scroll-to="'#form-container'">
         立即連署
       </el-button>
+      <img src="@/assets/img/last-img-text.png" width="100%" alt="">
+      <!-- <p class="NotoSansCJKtc-Regular title">地球只有一個<br>而你可以守護它</p>
+      <p class="EngGoth title-eng">PROTECT OUR ONE AND ONLY EARTH</p> -->
+      
     </div>
   </div>
 </template>
@@ -40,9 +42,10 @@ export default {
   background-size: 101% 101%;
   text-align: center;
   .center {
-    position: absolute;
+    position: relative;
     top: 50%;
-    left: 50%;
+    // left: 50%;
+    width: 100%;
     transform: translateY(-50%);
     color: white;
     .title {
@@ -78,28 +81,20 @@ export default {
 @media (max-width: 991px) {
   .last-img {
     height: 74vw;
+    padding-left: unset;
     .center {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      position: relative;
       color: white;
-      font-weight: bold;
-      white-space: nowrap;
-      .title {
-        font-size: 4rem;
-        letter-spacing: 5pt;
-        font-weight: bold;
+      // font-weight: bold;
+      // white-space: nowrap;
+      img {
+        margin-top: -50px;
       }
-      .title-eng {
-        font-size: 1.4rem;
-        letter-spacing: 3pt;
-        font-weight: bold;
-        border-bottom: 1px solid white;
-      }
-      .scroll-btn {   
-        margin-top: 10%;
-        position: relative;
+      .scroll-btn {
+        top: 60%;
+        left: 50%;
+        transform: translateX(-50%);
+        position: absolute;
         background-color: #eb9062;
         color: white;
         letter-spacing: 2pt;

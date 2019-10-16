@@ -78,7 +78,7 @@ export default {
     background-size: cover;
     background-position: top;
     z-index: 200;
-    height: 50vh;
+    height: 95vw;
     .title {
       padding: 10px;
       top: 0;
