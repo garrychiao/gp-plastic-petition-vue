@@ -1,5 +1,8 @@
 <template>
-  <div id="app">
+  <div id="app" 
+    v-loading.fullscreen.lock="loading"
+    element-loading-spinner="el-icon-loading"
+    element-loading-background="rgba(245, 245, 245, 0.9)">
     <!-- cut into sections -->
     <!-- home -->
     <el-row id="home">
@@ -94,6 +97,9 @@ export default {
   data() {
     return {
       formComponent: Form,
+      // formComponent: ThankYou,
+      loading: true,
+      // loading: false,
     }
   },
   methods: {
@@ -102,7 +108,15 @@ export default {
       // console.log('scroll to')
       const firstScrollTo = scroller();
       firstScrollTo('#form-container');
+    },
+    removeCover() {
+      setTimeout(() => {
+        this.loading = false;  
+      }, 1500);
     }
+  },
+  created() {
+    this.removeCover();
   }
 }
 </script>

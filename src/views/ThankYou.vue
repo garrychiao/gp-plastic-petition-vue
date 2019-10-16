@@ -8,18 +8,20 @@
         <p>感謝您參加連署，成為推動源頭減塑的力量！</p>
       </div>
       <div class="text-1">
-        <p>過去我們成功推動限用塑膠袋收費、禁用塑膠微粒，和2019年7月實施的內用禁止提供一次用塑膠吸管，等多場環境減塑勝利。</p>
+        <p>過去我們與其他團體成功推動<strong>禁用塑膠微粒</strong>以及實施<strong>限用一次性塑膠政策</strong>，這場「減塑運動」會一直持續下去，實踐源頭減塑，需要您進一步的支持，一起為減塑拿下更多里程碑!</p>
       </div>
       <div class="text-2">
         <p>實踐源頭減塑，需要您進一步的支持，一起為減塑拿下更多里程碑！</p>
       </div>
       <div class="counting-bar-container">
         <div class="counting-bar-out">
-          <div class="counting-bar-in">
+          <el-progress :stroke-width="22" :percentage="percent" :show-text="false" :color="barColor"></el-progress>
+          <!-- <div class="counting-bar-in">
 
-          </div>
+          </div> -->
         </div>
         <div class="counting-text">
+          <p>連署人數： <span class="inlight">{{total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</span></p>
           <p>號召更多朋友參與，達到目標： <span class="inlight">15</span> 萬</p>
         </div>
       </div>
@@ -42,12 +44,22 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'Blank',
   props: {
     msg: String
   },
+  data() {
+    return {
+      total: 0,
+      percent: 0,
+      barColor: '#eb9062',
+    }
+  },
   created() {
+    this.getPetitionNumber();
     $(function() {
       //tracking code
       window.dataLayer = window.dataLayer || [];
@@ -66,6 +78,30 @@ export default {
           'contentCategory': 'Petition Signup'
       });
     });
+  },
+  methods: {
+    async getPetitionNumber() {
+      try {
+        let target = 150000;
+        let res = await axios.get('https://act.greenpeace.org/page/widget/399755');
+        let response = res.data;
+        
+        let participation1 = response.data.rows[0].columns[4].value;
+        // console.log(participation1);
+        let participation2 = response.data.rows[1].columns[4].value;
+
+        this.total = parseInt(participation1) + parseInt(participation2);
+        this.percent = this.total / target * 100;
+        
+        console.log(total);
+
+        setTimeout(() => {
+          this.$emit('removeCover');
+        }, 1500);
+      } catch (err) {
+        console.log(err);
+      }
+    },
   }
 }
 </script>
@@ -100,6 +136,7 @@ export default {
     }
     .text-1 {
       margin-bottom: 10%;
+      line-height: 1.4;
     }
     .counting-bar-container {
       padding-top: 10%;
@@ -117,6 +154,7 @@ export default {
         }
       }
       .counting-text {
+        line-height: 1.4;
         padding-top: 25px;
       }
     }

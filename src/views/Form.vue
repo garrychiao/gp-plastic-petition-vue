@@ -160,26 +160,9 @@ export default {
     };
   },
   created() {
-    // this.getPetitionOne();
+    // this.getPetitionNumber();
   },
   methods: {
-    async test () {
-
-      try {
-        var form = document.getElementById('testForm');
-        console.log(form);
-        var formData = new FormData(form);
-        console.log(formData);
-        
-        let res = await axios.post('https://act.greenpeace.org/page/40031/petition/2', formData, { headers: {'Content-Type': 'multipart/form-data'  }});
-        let response = res.data;
-
-        console.log(res);
-      } catch (err) {
-        console.log(err)
-      }
-
-    },
     submitForm(formName) {
       // console.log((this.ruleForm.moreInfo ? "Y" : "N"));
       this.$refs[formName].validate(valid => {
