@@ -112,7 +112,7 @@ export default {
     removeCover() {
       setTimeout(() => {
         this.loading = false;  
-      }, 1500);
+      }, 3000);
     }
   },
   created() {
