@@ -2,7 +2,7 @@
   <div class="form">
     <div class="content-container" id="form-container">
       <div class="title">
-        <p class="NotoSansCJKtc-Regular">立即連署，要求各大超市賣場，減少塑膠包裝！</p>
+        <p class="NotoSansCJKtc-Regular">立即連署，要求十大零售通路，減少塑膠包裝！</p>
       </div>
       <div class="subtitle">
         <p class="NotoSansCJKtc-Regular">綠色和平會把你的訴求，轉達給各企業。</p>
