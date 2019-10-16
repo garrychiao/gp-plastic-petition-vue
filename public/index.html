@@ -1,26 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <!-- <link rel="icon" href="<%= BASE_URL %>favicon.ico"> -->
-    <meta name="description" content="立即投票，讓你最支持的零售商，實踐減塑！">
-    <meta property="og:title" content="超市減塑，誰當先鋒 | 綠色和平">
-    <meta property="og:image" content="<%= require('@/assets/img/og-image.jpg') %>" />
-    <link rel="shortcut icon" type="image/ico" href="https://www.greenpeace.org/global/favicon.ico">
 
-    <link rel="preload" href="<%= require('@/assets/fonts/NotoSansCJKtc-Regular.otf') %>" as="font" crossorigin>
-    <link rel="preload" href="<%= require('@/assets/fonts/NotoSansCJKtc-Medium.otf') %>" as="font" crossorigin>
-    <link rel="preload" href="<%= require('@/assets/fonts/EngGoth.ttf') %>" as="font" crossorigin>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <!-- <link rel="icon" href="<%= BASE_URL %>favicon.ico"> -->
+  <meta name="description" content="立即投票，讓你最支持的零售商，實踐減塑！">
+  <meta property="og:title" content="超市減塑，誰當先鋒 | 綠色和平">
+  <meta property="og:image" content="<%= require('@/assets/img/og-image.jpg') %>" />
+  <link rel="shortcut icon" type="image/ico" href="https://www.greenpeace.org/global/favicon.ico">
 
-    <title>超市減塑 誰當先鋒</title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but gp-plastic-petition-vue doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+  <link rel="preload" href="<%= require('@/assets/fonts/NotoSansCJKtc-Regular.otf') %>" as="font" crossorigin>
+  <link rel="preload" href="<%= require('@/assets/fonts/NotoSansCJKtc-Medium.otf') %>" as="font" crossorigin>
+  <link rel="preload" href="<%= require('@/assets/fonts/EngGoth.ttf') %>" as="font" crossorigin>
+
+  <title>超市減塑 誰當先鋒</title>
+  <script>
+    //Campaign Information
+    window.dataLayer = window.dataLayer || [];
+    dataLayer.push({
+      'gBasket': 'Good Life',
+      'gCampaign': 'Plastics Free Future',
+      'gScope': 'Global',
+      'gDepartment': 'Campaign',
+    });
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-WRM6WK6');
+  </script>
+  <!-- End Google Tag Manager -->
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but gp-plastic-petition-vue doesn't work properly without JavaScript enabled. Please enable it
+      to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+
 </html>

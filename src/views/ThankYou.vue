@@ -46,6 +46,26 @@ export default {
   name: 'Blank',
   props: {
     msg: String
+  },
+  created() {
+    $(function() {
+      //tracking code
+      window.dataLayer = window.dataLayer || [];
+      
+      dataLayer.push({
+          'event': 'gaEvent',
+          'eventCategory': 'petitions',
+          'eventAction': 'signup',
+          'eventLabel': '2019-plastic_retailer',
+          'eventValue' : undefined
+      });
+      
+      dataLayer.push({
+          'event': 'fbqEvent',
+          'contentName': '2019-plastic_retailer',
+          'contentCategory': 'Petition Signup'
+      });
+    });
   }
 }
 </script>
