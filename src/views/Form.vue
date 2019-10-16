@@ -117,6 +117,16 @@ export default {
     msg: String
   },
   data() {
+    var validateName = (rule, value, callback) => {
+      let nameReg = new RegExp(/^[\u4e00-\u9fa5_a-zA-Z_ ]{1,40}$/);
+      if (value === '') {
+        callback(new Error('姓名格式不正確，請不要輸入數字或符號'));
+      } else if (!nameReg.test(value)) {
+        callback(new Error('姓名格式不正確，請不要輸入數字或符號'));
+      } else {
+        callback();
+      }  
+    };
     return {
       ruleForm: {
         email: "",
@@ -124,7 +134,7 @@ export default {
         firstName: "",
         phone: "",
         yearOfBirth: "",
-        moreInfo: false
+        moreInfo: true
       },
       rules: {
         email: [
@@ -135,8 +145,8 @@ export default {
             trigger: "blur"
           }
         ],
-        lastName: [{ required: true, message: "請輸入姓氏", trigger: "blur" }],
-        firstName: [{ required: true, message: "請輸入名字", trigger: "blur" }],
+        lastName: [{ validator: validateName, message: "姓名格式不正確", trigger: "blur" }],
+        firstName: [{ validator: validateName, message: "姓名格式不正確，請不要輸入數字或符號", trigger: "blur" }],
         phone: [{ required: true, message: "請輸入電話", trigger: "blur" }],
         yearOfBirth: [
           {
@@ -171,7 +181,7 @@ export default {
 
     },
     submitForm(formName) {
-      // this.$emit("thankYou");
+      // console.log((this.ruleForm.moreInfo ? "Y" : "N"));
       this.$refs[formName].validate(valid => {
         if (!valid) {
           console.log("error submit!!");
@@ -184,7 +194,6 @@ export default {
     async postForm() {
       try {
         
-        
         let year = dayjs(this.ruleForm.yearOfBirth).format("DD/MM/YYYY");
 
         let formData = new URLSearchParams();
@@ -194,8 +203,8 @@ export default {
         formData.append("supporter.firstName", this.ruleForm.firstName);
         formData.append("supporter.phoneNumber", this.ruleForm.phoneNumber);
         formData.append("supporter.NOT_TAGGED_6", year);
-        formData.append("supporter.questions.7276", this.ruleForm.moreInfo);
-        formData.append("supporter.NOT_TAGGED_19", this.ruleForm.lastName + this.ruleForm.firstName);
+        formData.append("supporter.questions.7276", (this.ruleForm.moreInfo ? "Y" : "N"));
+        formData.append("supporter.NOT_TAGGED_19", this.ruleForm.lastName.trim() + this.ruleForm.firstName.trim());
         formData.append("supporter.NOT_TAGGED_28", "TW");
 
         let res = await axios.post('https://act.greenpeace.org/page/40031/petition/2', formData, { headers: {'Content-Type': 'application/x-www-form-urlencoded' }});
