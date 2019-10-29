@@ -38,6 +38,15 @@
           </el-col>
         </el-row>
       </div>
+      <div class="counting-bar-container">
+        <div class="counting-bar-out">
+          <el-progress :stroke-width="6" :percentage="percent" :show-text="false" :color="barColor"></el-progress>
+        </div>
+        <div class="counting-text">
+          <p>連署人數：<span class="inlight">{{total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</span>; 目標：<span class="inlight">15</span> 萬</p>
+          <!-- <p>號召更多朋友參與，達到目標： <span class="inlight">15</span> 萬</p> -->
+        </div>
+      </div>
       <div class="form-inputs">
         <el-form
           :model="ruleForm"
@@ -128,6 +137,9 @@ export default {
       }  
     };
     return {
+      total: 0,
+      percent: 0,
+      barColor: '#eb9062',
       ruleForm: {
         email: "",
         lastName: "",
@@ -160,7 +172,7 @@ export default {
     };
   },
   created() {
-    // this.getPetitionNumber();
+    this.getPetitionNumber();
   },
   methods: {
     submitForm(formName) {
@@ -173,6 +185,28 @@ export default {
         this.$emit("thankYou");
         this.postForm();
       });
+    },
+    async getPetitionNumber() {
+      try {
+        let target = 150000;
+        let res = await axios.get('https://act.greenpeace.org/page/widget/399755');
+        let response = res.data;
+        
+        let participation1 = response.data.rows[0].columns[4].value;
+        // console.log(participation1);
+        let participation2 = response.data.rows[1].columns[4].value;
+
+        this.total = parseInt(participation1) + parseInt(participation2);
+        this.percent = this.total / target * 100;
+        
+        console.log(total);
+
+        setTimeout(() => {
+          this.$emit('removeCover');
+        }, 1500);
+      } catch (err) {
+        console.log(err);
+      }
     },
     async postForm() {
       try {
@@ -216,6 +250,27 @@ export default {
   border-radius: 1px;
   box-shadow: 10px -5px 15px 0 rgba(214, 207, 207, 0.5);
   background-color: #f9f9f9;
+  .counting-bar-container {
+    padding: 0 4% 0;
+    .counting-bar-out {
+      border: 1px solid black;
+      padding: 2px;
+      background-color: white;
+      border-radius: 20px;
+      width: 100%;  
+      .counting-bar-in {
+        border-radius: 20px;
+        background-color: #eb9062;
+        width: 80%;  
+        height: 10px;
+      }
+    }
+    .counting-text {
+      color: #644837;
+      line-height: 1.4;
+      padding-top: 5px;
+    }
+  }
   .content-container {
     background-color: #f9f9f9;
     padding: 5% 8% 0;
@@ -261,6 +316,9 @@ export default {
 @media (min-width: 992px) and (max-width: 1919px) {
   .form {
     .content-container {
+      .counting-bar-container {
+        padding: 0 5.5% 0;
+      }
       .title {
         color: #eb9062;
         font-weight: bold;
@@ -279,7 +337,7 @@ export default {
         }
         .submit-btn-container {
           padding-top: 10px;
-          padding-bottom: 10px;
+          padding-bottom: 0px;
           .submit-btn {
             font-size: 1rem;
           }
@@ -291,6 +349,9 @@ export default {
 @media (max-width: 991px) and (min-width: 768px) {
   .form {
     .content-container {
+      .counting-bar-container {
+        padding: 0 3.5% 0 !important;
+      }
       .title {
         font-size: 2.5rem !important;
         line-height: 1.6;
@@ -317,6 +378,9 @@ export default {
     margin-top: -50vh;
     padding-top: 52vh;
     .content-container {
+      .counting-bar-container {
+        padding: 0 7% 0;
+      }
       .title {
         font-size: 1.8rem;
         line-height: 1.6;

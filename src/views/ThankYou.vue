@@ -16,9 +16,6 @@
       <div class="counting-bar-container">
         <div class="counting-bar-out">
           <el-progress :stroke-width="22" :percentage="percent" :show-text="false" :color="barColor"></el-progress>
-          <!-- <div class="counting-bar-in">
-
-          </div> -->
         </div>
         <div class="counting-text">
           <p>連署人數： <span class="inlight">{{total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</span></p>

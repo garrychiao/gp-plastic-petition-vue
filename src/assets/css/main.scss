@@ -3,16 +3,19 @@ $secondary-color: #644837;
 
 @font-face {
     font-family: EngGoth;
+    font-display: auto;
     src: url('../fonts/EngGoth.ttf');
 }
 
 @font-face {
     font-family: NotoSansCJKtc-Regular;
+    font-display: auto;
     src: url('../fonts/NotoSansCJKtc-Regular.otf');
 }
 
 @font-face {
     font-family: NotoSansCJKtc-Medium;
+    font-display: auto;
     src: url('../fonts/NotoSansCJKtc-Medium.otf');
 }
 
