@@ -199,8 +199,6 @@ export default {
         this.total = parseInt(participation1) + parseInt(participation2);
         this.percent = this.total / target * 100;
         
-        console.log(total);
-
         setTimeout(() => {
           this.$emit('removeCover');
         }, 1500);
@@ -379,7 +377,7 @@ export default {
     padding-top: 52vh;
     .content-container {
       .counting-bar-container {
-        padding: 0 7% 0;
+        padding: 0 6% 0;
       }
       .title {
         font-size: 1.8rem;

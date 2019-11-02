@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import ElementUI from 'element-ui';
+import VueRouter from 'vue-router'
 import 'element-ui/lib/theme-chalk/index.css';
 import 'element-ui/lib/theme-chalk/display.css';
 import '@/assets/css/main.scss';
@@ -14,6 +15,7 @@ window.$ = $;
 var VueScrollTo = require('vue-scrollto');
 
 Vue.use(VueScrollTo)
+Vue.use(VueRouter)
 
 // You can also pass in the default options
 Vue.use(VueScrollTo, {
@@ -30,9 +32,12 @@ Vue.use(VueScrollTo, {
   y: true
 })
 
+const router = new VueRouter();
+
 Vue.use(ElementUI);
 Vue.config.productionTip = false
 
 new Vue({
+  router,
   render: h => h(App),
 }).$mount('#app')

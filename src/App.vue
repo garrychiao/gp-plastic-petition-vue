@@ -116,6 +116,12 @@ export default {
     }
   },
   created() {
+    // console.log(this.$router.currentRoute.path);
+    if (this.$router.currentRoute.path === '/2') {
+      this.formComponent = ThankYou;
+    } else {
+      this.formComponent = Form;
+    }
     this.removeCover();
   }
 }
