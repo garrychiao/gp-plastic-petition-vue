@@ -32,7 +32,9 @@ Vue.use(VueScrollTo, {
   y: true
 })
 
-const router = new VueRouter();
+const router = new VueRouter({
+  mode: 'hash',
+});
 
 Vue.use(ElementUI);
 Vue.config.productionTip = false

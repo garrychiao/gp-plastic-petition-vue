@@ -25,12 +25,12 @@
       <div class="btn-container">
         <el-row :gutter="24">
           <el-col :xs="{span: 18, offset: 3}" :sm="{span: 12}">
-            <el-button round class="fb-share-btn">
+            <el-button round class="fb-share-btn" @click="share">
               FACEBOOK分享
             </el-button>
           </el-col>
           <el-col :xs="{span: 18, offset: 3}" :sm="{span: 12}">
-            <el-button round class="donate-btn">
+            <el-button round class="donate-btn" @click="toDonate">
               捐款支持
             </el-button>
           </el-col>
@@ -99,6 +99,27 @@ export default {
         console.log(err);
       }
     },
+    share() {
+      let title = '超市減塑，誰當先鋒 | 綠色和平'
+      let text = '立即投票，讓你最支持的零售商，實踐減塑！'
+      let url = "https://act.gp/2NsMNQf"
+
+      if (navigator.share) {
+        navigator.share({
+            title,
+            text,
+            url,
+        }).then(() => console.log('Successfully shared'))
+          .catch((error) => console.log('Error sharing', error));
+      } else {
+        // console.log(url)
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "pop", "width=600, height=400, scrollbars=no");
+      }
+    },
+    toDonate() {
+      let donateLink = 'https://act.gp/2NtibxX';
+      window.open(donateLink, '_blank');
+    }
   }
 }
 </script>
