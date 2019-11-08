@@ -28,7 +28,7 @@
           </el-row>
           <el-row :gutter="15">
             <el-col :sm="24" :xl="6">
-              <el-button plain round class="footer-btn" @click="openLink('http://act.greenpeace.org/page/45804/donate/1')">
+              <el-button plain round class="footer-btn" @click="openLink('https://act.gp/2NtibxX')">
                 支持我們
               </el-button>
             </el-col>

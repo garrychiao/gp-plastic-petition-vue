@@ -116,7 +116,7 @@ export default {
     }
   },
   created() {
-    console.log(this.$router.currentRoute);
+    // console.log(this.$router.currentRoute);
     if (this.$router.currentRoute.path === '/2') {
       this.formComponent = ThankYou;
     } else {

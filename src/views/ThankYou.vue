@@ -90,7 +90,7 @@ export default {
         this.total = parseInt(participation1) + parseInt(participation2);
         this.percent = this.total / target * 100;
         
-        console.log(total);
+        // console.log(total);
 
         setTimeout(() => {
           this.$emit('removeCover');
@@ -117,7 +117,7 @@ export default {
       }
     },
     toDonate() {
-      let donateLink = 'https://act.gp/2NtibxX';
+      let donateLink = 'https://act.gp/33tC25S';
       window.open(donateLink, '_blank');
     }
   }
