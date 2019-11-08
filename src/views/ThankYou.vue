@@ -101,7 +101,7 @@ export default {
     },
     share() {
       let title = '超市減塑，誰當先鋒 | 綠色和平'
-      let text = '立即投票，讓你最支持的零售商，實踐減塑！'
+      let text = '立即連署，要求十大零售通路，減少塑膠包裝！'
       let url = "https://act.gp/2NsMNQf"
 
       if (navigator.share) {
