@@ -234,7 +234,7 @@ export default {
         formData.append("supporter.NOT_TAGGED_28", "TW");
 
 // console.log(formData);
-        // let res = await axios.post('https://act.greenpeace.org/page/40031/petition/2', formData, { headers: {'Content-Type': 'application/x-www-form-urlencoded' }});
+        let res = await axios.post('https://act.greenpeace.org/page/40031/petition/2', formData, { headers: {'Content-Type': 'application/x-www-form-urlencoded' }});
         let response = res.data;
 
         this.$emit("thankYou");
