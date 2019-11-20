@@ -136,6 +136,17 @@ export default {
         callback();
       }  
     };
+    var validatePhone = (rule, value, callback) => {
+      let re_phone = new RegExp(/0\d{1,2}-\d{6,8}/);
+      let re_mobile = new RegExp(/((?=(09))[0-9]{10})$/);
+      if (value === '') {
+        callback(new Error('電話格式不正確'));
+      } else if (!(re_phone.test(value) || re_mobile.test(value))) {
+        callback(new Error('電話格式不正確'));
+      } else {
+        callback();
+      }  
+    };
     return {
       total: 0,
       percent: 0,
@@ -159,7 +170,7 @@ export default {
         ],
         lastName: [{ validator: validateName, message: "姓名格式不正確", trigger: "blur" }],
         firstName: [{ validator: validateName, message: "姓名格式不正確，請不要輸入數字或符號", trigger: "blur" }],
-        phoneNumber: [{ required: true, message: "請輸入電話", trigger: "blur" }],
+        phoneNumber: [{ validator: validatePhone, message: "電話格式不正確", trigger: "blur" }],
         yearOfBirth: [
           {
             type: "date",
@@ -222,7 +233,8 @@ export default {
         formData.append("supporter.NOT_TAGGED_19", this.ruleForm.lastName.trim() + this.ruleForm.firstName.trim());
         formData.append("supporter.NOT_TAGGED_28", "TW");
 
-        let res = await axios.post('https://act.greenpeace.org/page/40031/petition/2', formData, { headers: {'Content-Type': 'application/x-www-form-urlencoded' }});
+// console.log(formData);
+        // let res = await axios.post('https://act.greenpeace.org/page/40031/petition/2', formData, { headers: {'Content-Type': 'application/x-www-form-urlencoded' }});
         let response = res.data;
 
         this.$emit("thankYou");
