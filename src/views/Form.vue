@@ -73,7 +73,7 @@
           </el-row>
           <el-row :gutter="30">
             <el-col :xs="24" :md="24" :xl="17">
-              <el-form-item label="電話（0912345678 或 02-23612351）" prop="phone" required>
+              <el-form-item label="電話（0912345678 或 02-23612351）" prop="phoneNumber" required>
                 <el-input autocomplete="on" v-model="ruleForm.phoneNumber" placeholder="0912345678"></el-input>
               </el-form-item>
             </el-col>
@@ -144,7 +144,7 @@ export default {
         email: "",
         lastName: "",
         firstName: "",
-        phone: "",
+        phoneNumber: "",
         yearOfBirth: "",
         moreInfo: true
       },
