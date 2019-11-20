@@ -74,7 +74,7 @@
           <el-row :gutter="30">
             <el-col :xs="24" :md="24" :xl="17">
               <el-form-item label="電話（0912345678 或 02-23612351）" prop="phone" required>
-                <el-input autocomplete="on" v-model="ruleForm.phone" placeholder="0912345678"></el-input>
+                <el-input autocomplete="on" v-model="ruleForm.phoneNumber" placeholder="0912345678"></el-input>
               </el-form-item>
             </el-col>
             <el-col :xs="12" :md="12" :xl="7">
@@ -159,7 +159,7 @@ export default {
         ],
         lastName: [{ validator: validateName, message: "姓名格式不正確", trigger: "blur" }],
         firstName: [{ validator: validateName, message: "姓名格式不正確，請不要輸入數字或符號", trigger: "blur" }],
-        phone: [{ required: true, message: "請輸入電話", trigger: "blur" }],
+        phoneNumber: [{ required: true, message: "請輸入電話", trigger: "blur" }],
         yearOfBirth: [
           {
             type: "date",
