@@ -214,6 +214,7 @@ export default {
           console.log("error submit!!");
           return false;
         }
+        this.yahooADTracking();
         this.$emit("thankYou");
         this.postForm();
       });
@@ -269,7 +270,6 @@ export default {
         );
         let response = res.data;
 
-        this.yahooADTracking();
         this.$emit("thankYou");
       } catch (err) {
         console.log(err);
