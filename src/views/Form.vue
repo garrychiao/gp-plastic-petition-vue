@@ -269,8 +269,8 @@ export default {
         );
         let response = res.data;
 
-        this.$emit("thankYou");
         this.yahooADTracking();
+        this.$emit("thankYou");
       } catch (err) {
         console.log(err);
       }
