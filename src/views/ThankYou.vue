@@ -19,7 +19,7 @@
         </div>
         <div class="counting-text">
           <p>連署人數： <span class="inlight">{{total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</span></p>
-          <p>號召更多朋友參與，達到目標： <span class="inlight">15</span> 萬</p>
+          <p>號召更多朋友參與，達到目標： <span class="inlight">20</span> 萬</p>
         </div>
       </div>
       <div class="btn-container">
@@ -79,7 +79,7 @@ export default {
   methods: {
     async getPetitionNumber() {
       try {
-        let target = 150000;
+        let target = 200000;
         let res = await axios.get('https://act.greenpeace.org/page/widget/399755');
         let response = res.data;
         

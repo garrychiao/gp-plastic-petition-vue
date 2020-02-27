@@ -43,8 +43,11 @@
           <el-progress :stroke-width="6" :percentage="percent" :show-text="false" :color="barColor"></el-progress>
         </div>
         <div class="counting-text">
-          <p>連署人數：<span class="inlight">{{total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</span>; 目標：<span class="inlight">15</span> 萬</p>
-          <!-- <p>號召更多朋友參與，達到目標： <span class="inlight">15</span> 萬</p> -->
+          <p>
+            連署人數：
+            <span class="inlight">{{total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</span>; 目標：
+            <span class="inlight">20</span> 萬
+          </p>
         </div>
       </div>
       <div class="form-inputs">
@@ -55,7 +58,7 @@
           label-width="120px"
           label-position="top"
           class="NotoSansCJKtc-Regular"
-          >
+        >
           <el-form-item label="電子信箱" prop="email" required>
             <el-input autocomplete="on" placeholder="greenpeace@gmail.com" v-model="ruleForm.email"></el-input>
           </el-form-item>
@@ -118,7 +121,7 @@
 <script>
 import axios from "axios";
 import dayjs from "dayjs";
-const qs = require('qs');
+const qs = require("qs");
 
 export default {
   name: "Form",
@@ -128,29 +131,29 @@ export default {
   data() {
     var validateName = (rule, value, callback) => {
       let nameReg = new RegExp(/^[\u4e00-\u9fa5_a-zA-Z_ ]{1,40}$/);
-      if (value === '') {
-        callback(new Error('姓名格式不正確，請不要輸入數字或符號'));
+      if (value === "") {
+        callback(new Error("姓名格式不正確，請不要輸入數字或符號"));
       } else if (!nameReg.test(value)) {
-        callback(new Error('姓名格式不正確，請不要輸入數字或符號'));
+        callback(new Error("姓名格式不正確，請不要輸入數字或符號"));
       } else {
         callback();
-      }  
+      }
     };
     var validatePhone = (rule, value, callback) => {
       let re_phone = new RegExp(/0\d{1,2}-\d{6,8}/);
       let re_mobile = new RegExp(/((?=(09))[0-9]{10})$/);
-      if (value === '') {
-        callback(new Error('電話格式不正確'));
+      if (value === "") {
+        callback(new Error("電話格式不正確"));
       } else if (!(re_phone.test(value) || re_mobile.test(value))) {
-        callback(new Error('電話格式不正確'));
+        callback(new Error("電話格式不正確"));
       } else {
         callback();
-      }  
+      }
     };
     return {
       total: 0,
       percent: 0,
-      barColor: '#eb9062',
+      barColor: "#eb9062",
       ruleForm: {
         email: "",
         lastName: "",
@@ -168,9 +171,27 @@ export default {
             trigger: "blur"
           }
         ],
-        lastName: [{ validator: validateName, message: "姓名格式不正確", trigger: "blur" }],
-        firstName: [{ validator: validateName, message: "姓名格式不正確，請不要輸入數字或符號", trigger: "blur" }],
-        phoneNumber: [{ validator: validatePhone, message: "電話格式不正確", trigger: "blur" }],
+        lastName: [
+          {
+            validator: validateName,
+            message: "姓名格式不正確",
+            trigger: "blur"
+          }
+        ],
+        firstName: [
+          {
+            validator: validateName,
+            message: "姓名格式不正確，請不要輸入數字或符號",
+            trigger: "blur"
+          }
+        ],
+        phoneNumber: [
+          {
+            validator: validatePhone,
+            message: "電話格式不正確",
+            trigger: "blur"
+          }
+        ],
         yearOfBirth: [
           {
             type: "date",
@@ -199,19 +220,21 @@ export default {
     },
     async getPetitionNumber() {
       try {
-        let target = 150000;
-        let res = await axios.get('https://act.greenpeace.org/page/widget/399755');
+        let target = 200000;
+        let res = await axios.get(
+          "https://act.greenpeace.org/page/widget/399755"
+        );
         let response = res.data;
-        
+
         let participation1 = response.data.rows[0].columns[4].value;
         // console.log(participation1);
         let participation2 = response.data.rows[1].columns[4].value;
 
         this.total = parseInt(participation1) + parseInt(participation2);
-        this.percent = this.total / target * 100;
-        
+        this.percent = (this.total / target) * 100;
+
         setTimeout(() => {
-          this.$emit('removeCover');
+          this.$emit("removeCover");
         }, 1500);
       } catch (err) {
         console.log(err);
@@ -219,7 +242,6 @@ export default {
     },
     async postForm() {
       try {
-        
         let year = dayjs(this.ruleForm.yearOfBirth).format("DD/MM/YYYY");
 
         let formData = new URLSearchParams();
@@ -229,21 +251,44 @@ export default {
         formData.append("supporter.firstName", this.ruleForm.firstName);
         formData.append("supporter.phoneNumber", this.ruleForm.phoneNumber);
         formData.append("supporter.NOT_TAGGED_6", year);
-        formData.append("supporter.questions.7276", (this.ruleForm.moreInfo ? "Y" : "N"));
-        formData.append("supporter.NOT_TAGGED_19", this.ruleForm.lastName.trim() + this.ruleForm.firstName.trim());
+        formData.append(
+          "supporter.questions.7276",
+          this.ruleForm.moreInfo ? "Y" : "N"
+        );
+        formData.append(
+          "supporter.NOT_TAGGED_19",
+          this.ruleForm.lastName.trim() + this.ruleForm.firstName.trim()
+        );
         formData.append("supporter.NOT_TAGGED_28", "TW");
 
-// console.log(formData);
-        let res = await axios.post('https://act.greenpeace.org/page/40031/petition/2', formData, { headers: {'Content-Type': 'application/x-www-form-urlencoded' }});
+        // console.log(formData);
+        let res = await axios.post(
+          "https://act.greenpeace.org/page/40031/petition/2",
+          formData,
+          { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
+        );
         let response = res.data;
 
         this.$emit("thankYou");
-
-
+        this.yahooADTracking();
       } catch (err) {
         console.log(err);
       }
-    }
+    },
+    yahooADTracking() {
+      console.log('yahooADTracking')
+      window.dotq = window.dotq || [];
+      window.dotq.push({
+        projectId: "10000",
+        properties: {
+          pixelId: "10094925",
+          qstrings: {
+            et: "custom",
+            ea: "submit"
+          }
+        }
+      });
+    },
   }
 };
 </script>
@@ -267,11 +312,11 @@ export default {
       padding: 2px;
       background-color: white;
       border-radius: 20px;
-      width: 100%;  
+      width: 100%;
       .counting-bar-in {
         border-radius: 20px;
         background-color: #eb9062;
-        width: 80%;  
+        width: 80%;
         height: 10px;
       }
     }

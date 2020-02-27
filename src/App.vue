@@ -113,7 +113,7 @@ export default {
       setTimeout(() => {
         this.loading = false;  
       }, 3000);
-    }
+    },
   },
   created() {
     // console.log(this.$router.currentRoute);
