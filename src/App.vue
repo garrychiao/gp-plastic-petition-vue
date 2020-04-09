@@ -1,5 +1,5 @@
 <template>
-  <div id="app" 
+  <div id="app"
     v-loading.fullscreen.lock="loading"
     element-loading-spinner="el-icon-loading"
     element-loading-background="rgba(245, 245, 245, 0.9)">
@@ -98,8 +98,8 @@ export default {
     return {
       formComponent: Form,
       // formComponent: ThankYou,
-      loading: true,
-      // loading: false,
+      // loading: true,
+      loading: false,
     }
   },
   methods: {
@@ -111,7 +111,7 @@ export default {
     },
     removeCover() {
       setTimeout(() => {
-        this.loading = false;  
+        this.loading = false;
       }, 3000);
     },
   },
@@ -150,6 +150,6 @@ body {
     width: 100%;
     z-index: 100;
     /* border: 1px solid black; */
-  } 
+  }
 }
 </style>

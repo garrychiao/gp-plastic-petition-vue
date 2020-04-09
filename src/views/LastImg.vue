@@ -7,7 +7,7 @@
       <img src="@/assets/img/last-img-text.png" width="100%" alt="">
       <!-- <p class="NotoSansCJKtc-Regular title">地球只有一個<br>而你可以守護它</p>
       <p class="EngGoth title-eng">PROTECT OUR ONE AND ONLY EARTH</p> -->
-      
+
     </div>
   </div>
 </template>
@@ -102,6 +102,6 @@ export default {
         border-radius: 50px;
       }
     }
-  } 
+  }
 }
 </style>
