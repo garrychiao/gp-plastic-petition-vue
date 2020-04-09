@@ -1,24 +1,39 @@
 # gp-plastic-petition-vue
 
-## Project setup
+## Local Development Setup
+
 ```
 yarn install
+yarn serve
 ```
 
-### Compiles and hot-reloads for development
+And browse to http://localhost:8080
+
+## Compile to production-ready pre-rendered HTML
+
+1. First you need to update the `publicPath` in file `vue.config.js`
 ```
-yarn run serve
+publicPath: process.env.NODE_ENV === 'production' ?
+  'https://YOUR_PUBLIC_URL':'./'
 ```
 
-### Compiles and minifies for production
+The compiled html will try to load the static files (js/css/images) from the given url.
+
+And start to compile the first time.
+
 ```
-yarn run build
+yarn build
 ```
 
-### Run your tests
+2. Upload the compiled folder `docs` to your accessible public server. Which can be accessed by URL `https://YOUR_PUBLIC_URL/static/{THE_STATIC_FILES}`
+
+3. Compile again in order to generate the pre-rendered HTML.
+
 ```
-yarn run test
+yarn build
 ```
+
+4. Now the `docs/index.html` is a pre-rendered HTML that you can move it to anywhere.
 
 ### Lints and fixes files
 ```
