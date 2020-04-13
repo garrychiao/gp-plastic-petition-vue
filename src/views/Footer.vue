@@ -16,7 +16,7 @@
         <el-col :xs="24" :md="9" :offset="1">
           <el-row :gutter="15">
             <el-col :sm="12" :lg="6">
-              <el-button plain round class="footer-btn" @click="openLink('https://www.greenpeace.org/taiwan')">
+              <el-button plain round class="footer-btn" @click="openLink('https://www.greenpeace.org/taiwan/?ref=2019-plastic_retailer_footer')">
                 主頁
               </el-button>
             </el-col>
@@ -28,12 +28,12 @@
           </el-row>
           <el-row :gutter="15">
             <el-col :sm="24" :xl="6">
-              <el-button plain round class="footer-btn" @click="openLink('https://act.gp/2NtibxX')">
+              <el-button plain round class="footer-btn" @click="openLink('https://act.greenpeace.org/page/4723/donate/1?ref=2019-plastic_retailer_footer')">
                 支持我們
               </el-button>
             </el-col>
             <el-col :sm="24" :xl="17" class="hidden-xl-only">
-              <el-button plain round class="footer-btn" @click="openLink('https://www.greenpeace.org/taiwan/policies/privacy-and-cookies')">
+              <el-button plain round class="footer-btn" @click="openLink('https://www.greenpeace.org/taiwan/policies/privacy-and-cookies?ref=2019-plastic_retailer_footer')">
                 隱私政策與個人資料收集聲明
               </el-button>
             </el-col>
@@ -54,7 +54,7 @@ export default {
     openLink (link) {
       // console.log(link)
       window.open(
-        link + "?utm_campaign=2019-plastic_retailer&utm_source=change.greenpeace.org.tw&utm_medium=referral&utm_content=footer_link",
+        link,
         '_blank'
       )
     }

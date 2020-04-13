@@ -117,7 +117,7 @@ export default {
       }
     },
     toDonate() {
-      let donateLink = 'https://act.gp/33tC25S';
+      let donateLink = 'https://act.greenpeace.org/page/4723/donate/1?ref=2019-plastic_retailer_thankyou_page';
       window.open(donateLink, '_blank');
     }
   }
