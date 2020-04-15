@@ -53,8 +53,45 @@
     <strong>We're sorry but gp-plastic-petition-vue doesn't work properly without JavaScript enabled. Please enable it
       to continue.</strong>
   </noscript>
+
   <div id="app"></div>
-  <!-- built files will be auto injected -->
+
+
+  <form id="mc-form" method="post" action="http://cloud.greenhk.greenpeace.org/process_">
+    <input type="hidden" name="LeadSource" value="NuclearPetition">
+    <input type="hidden" name="PetitionIssueType" value="Oceans">
+    <input type="hidden" name="CampaignId" value="7010k000000nydwAAA">
+    <input type="hidden" name="UtmSource" value="">
+    <input type="hidden" name="DonationPageUrl" value="https://www.google.com.au/?gws_rd=ssl">
+
+    <label for="FirstName">First name:</label>
+    <br>
+    <input type="text" id="firstName" name="firstName">
+    <br>
+    <label for="LastName">Last name:</label>
+    <br>
+    <input type="text" id="LastName" name="lastName">
+    <br>
+    <label for="Email">Email:</label>
+    <br>
+    <input type="text" id="Email" name="Email">
+    <br>
+    <label for="Email">MobilePhone:</label>
+    <br>
+    <input type="text" id="MobilePhone" name="MobilePhone">
+    <br>
+    <label for="Birthdate">Birthdate:</label>
+    <br>
+    <input type="text" id="Birthdate" name="Birthdate">
+    <br>
+     <label for="OptIn">Opt-In:</label>
+    <br>
+    <input type="checkbox" id="OptIn" name="OptIn" value="true">
+    <br>
+    <input type="submit" value="Submit">
+    <input name="Submitted" type="hidden" value="true">
+  </form>
+
 </body>
 
 </html>

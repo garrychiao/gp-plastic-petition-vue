@@ -60,24 +60,24 @@
           class="NotoSansCJKtc-Regular"
         >
           <el-form-item label="電子信箱" prop="email" required>
-            <el-input autocomplete="on" placeholder="greenpeace@gmail.com" v-model="ruleForm.email"></el-input>
+            <el-input autocomplete="on" placeholder="greenpeace@gmail.com" v-model="ruleForm.email" name="email"></el-input>
           </el-form-item>
           <el-row :gutter="30">
             <el-col :span="10">
               <el-form-item label="姓氏" prop="lastName" required>
-                <el-input autocomplete="on" v-model="ruleForm.lastName" placeholder="王"></el-input>
+                <el-input autocomplete="on" v-model="ruleForm.lastName" placeholder="王" name="last-name"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="14">
               <el-form-item label="名字" prop="firstName" required>
-                <el-input autocomplete="on" v-model="ruleForm.firstName" placeholder="小明"></el-input>
+                <el-input autocomplete="on" v-model="ruleForm.firstName" placeholder="小明" name="first-name"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
           <el-row :gutter="30">
             <el-col :xs="24" :md="24" :xl="17">
-              <el-form-item label="電話（0912345678 或 02-23612351）" prop="phoneNumber" required>
-                <el-input autocomplete="on" v-model="ruleForm.phoneNumber" placeholder="0912345678"></el-input>
+              <el-form-item label="電話（0912345678 或 02-23612351）" prop="phoneNumber" required >
+                <el-input autocomplete="on" v-model="ruleForm.phoneNumber" placeholder="0912345678" name="phone"></el-input>
               </el-form-item>
             </el-col>
             <el-col :xs="12" :md="12" :xl="7">
@@ -246,26 +246,35 @@ export default {
         let year = dayjs(this.ruleForm.yearOfBirth).format("DD/MM/YYYY");
 
         let formData = new URLSearchParams();
+
+        let mcFields = ["LeadSource", "PetitionIssueType", "CampaignId", "UtmSource", "DonationPageUrl"]
+        mcFields.forEach(s => {
+          formData.append(s, document.querySelector("[name="+s+"]").value);
+          console.log('use', s, document.querySelector("[name="+s+"]").value)
+        })
+
+
         // formData.append("sessionId", "2b3ede609e844beebee2571434f15a36-server9800");
-        formData.append("supporter.emailAddress", this.ruleForm.email);
-        formData.append("supporter.lastName", this.ruleForm.lastName);
-        formData.append("supporter.firstName", this.ruleForm.firstName);
-        formData.append("supporter.phoneNumber", this.ruleForm.phoneNumber);
-        formData.append("supporter.NOT_TAGGED_6", year);
-        formData.append(
-          "supporter.questions.7276",
-          this.ruleForm.moreInfo ? "Y" : "N"
-        );
-        formData.append(
-          "supporter.NOT_TAGGED_19",
-          this.ruleForm.lastName.trim() + this.ruleForm.firstName.trim()
-        );
-        formData.append("supporter.NOT_TAGGED_28", "TW");
+        formData.append("Email", this.ruleForm.email);
+        formData.append("LastName", this.ruleForm.lastName);
+        formData.append("FirstName", this.ruleForm.firstName);
+        formData.append("MobilePhone", this.ruleForm.phoneNumber);
+        formData.append("Birthdate", year);
+        formData.append("OptIn", this.ruleForm.moreInfo);
+        // formData.append(
+        //   "supporter.NOT_TAGGED_19",
+        //   this.ruleForm.lastName.trim() + this.ruleForm.firstName.trim()
+        // );
+        // formData.append("supporter.NOT_TAGGED_28", "TW");
 
         console.log('formData', JSON.stringify(Object.fromEntries(formData)));
+
+        let mcFormUrl = document.querySelector("#mc-form").action;
         let res = await axios.post(
-          // "https://act.greenpeace.org/page/40031/petition/2",
-          "https://cors-anywhere.small-service.gpeastasia.org/http://cloud.greenhk.greenpeace.org/process",
+          mcFormUrl.indexOf(window.location.hostname)>-1 ?
+            mcFormUrl:
+            "https://cors-anywhere.small-service.gpeastasia.org/"+mcFormUrl
+          ,
           formData,
           { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
         );

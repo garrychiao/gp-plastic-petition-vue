@@ -21,5 +21,8 @@ module.exports = {
           routes: [ '/'],
         })
       ] : []
+    },
+    devServer: {
+      disableHostCheck: true
     }
 };

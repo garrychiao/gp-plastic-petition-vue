@@ -152,4 +152,8 @@ body {
     /* border: 1px solid black; */
   }
 }
+
+#mc-form {
+  display: none;
+}
 </style>
