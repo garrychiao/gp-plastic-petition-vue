@@ -19,7 +19,7 @@
         </div>
         <div class="counting-text">
           <p>連署人數： <span class="inlight">{{total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</span></p>
-          <p>號召更多朋友參與，達到目標： <span class="inlight">20</span> 萬</p>
+          <p>號召更多朋友參與，達到目標： <span class="inlight">{{goal.toLocaleString()}}</span></p>
         </div>
       </div>
       <div class="btn-container">
@@ -52,6 +52,7 @@ export default {
     return {
       total: 0,
       percent: 0,
+      goal: 200000,
       barColor: '#eb9062',
     }
   },
@@ -60,7 +61,7 @@ export default {
     $(function() {
       //tracking code
       window.dataLayer = window.dataLayer || [];
-      
+
       dataLayer.push({
           'event': 'gaEvent',
           'eventCategory': 'petitions',
@@ -68,7 +69,7 @@ export default {
           'eventLabel': '2019-plastic_retailer',
           'eventValue' : undefined
       });
-      
+
       dataLayer.push({
           'event': 'fbqEvent',
           'contentName': '2019-plastic_retailer',
@@ -78,26 +79,38 @@ export default {
   },
   methods: {
     async getPetitionNumber() {
-      try {
-        let target = 200000;
-        let res = await axios.get('https://act.greenpeace.org/page/widget/399755');
-        let response = res.data;
-        
-        let participation1 = response.data.rows[0].columns[4].value;
-        // console.log(participation1);
-        let participation2 = response.data.rows[1].columns[4].value;
+      if (JS_VARS) { // direct read from js var
+        const {numResponses, numGoalResponses} = JS_VARS
 
-        this.total = parseInt(participation1) + parseInt(participation2);
-        this.percent = this.total / target * 100;
-        
-        // console.log(total);
-
-        setTimeout(() => {
-          this.$emit('removeCover');
-        }, 1500);
-      } catch (err) {
-        console.log(err);
+        this.total = numResponses
+        this.percent = numResponses/numGoalResponses*100
+        this.goal = numGoalResponses
+      } else {
+        this.total = 1000
+        this.percent = 0.5
+        this.goal = 2000
       }
+
+      // try {
+      //   let target = 200000;
+      //   let res = await axios.get('https://act.greenpeace.org/page/widget/399755');
+      //   let response = res.data;
+
+      //   let participation1 = response.data.rows[0].columns[4].value;
+      //   // console.log(participation1);
+      //   let participation2 = response.data.rows[1].columns[4].value;
+
+      //   this.total = parseInt(participation1) + parseInt(participation2);
+      //   this.percent = this.total / target * 100;
+
+      //   // console.log(total);
+
+      //   setTimeout(() => {
+      //     this.$emit('removeCover');
+      //   }, 1500);
+      // } catch (err) {
+      //   console.log(err);
+      // }
     },
     share() {
       let title = '超市減塑，誰當先鋒 | 綠色和平'
@@ -163,11 +176,11 @@ export default {
         padding: 5px;
         background-color: white;
         border-radius: 20px;
-        width: 100%;  
+        width: 100%;
         .counting-bar-in {
           border-radius: 20px;
           background-color: #eb9062;
-          width: 80%;  
+          width: 80%;
           height: 20px;
         }
       }
@@ -210,7 +223,7 @@ export default {
         }
       }
     }
-  } 
+  }
 }
 @media (max-width: 991px) {
   .thank {
@@ -229,6 +242,6 @@ export default {
         }
       }
     }
-  } 
+  }
 }
 </style>

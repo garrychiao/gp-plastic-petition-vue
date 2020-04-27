@@ -46,7 +46,7 @@
           <p>
             連署人數：
             <span class="inlight">{{total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</span>; 目標：
-            <span class="inlight">20</span> 萬
+            <span class="inlight">{{goal.toLocaleString()}}</span>
           </p>
         </div>
       </div>
@@ -153,6 +153,7 @@ export default {
     return {
       total: 0,
       percent: 0,
+      goal: 0,
       barColor: "#eb9062",
       ruleForm: {
         email: "",
@@ -220,26 +221,38 @@ export default {
       });
     },
     async getPetitionNumber() {
-      try {
-        let target = 200000;
-        let res = await axios.get(
-          "https://act.greenpeace.org/page/widget/399755"
-        );
-        let response = res.data;
+      if (JS_VARS) { // direct read from js var
+        const {numResponses, numGoalResponses} = JS_VARS
 
-        let participation1 = response.data.rows[0].columns[4].value;
-        // console.log(participation1);
-        let participation2 = response.data.rows[1].columns[4].value;
-
-        this.total = parseInt(participation1) + parseInt(participation2);
-        this.percent = (this.total / target) * 100;
-
-        setTimeout(() => {
-          this.$emit("removeCover");
-        }, 1500);
-      } catch (err) {
-        console.log(err);
+        this.total = numResponses
+        this.percent = numResponses/numGoalResponses*100
+        this.goal = numGoalResponses
+      } else {
+        this.total = 1000
+        this.percent = 0.5
+        this.goal = 2000
       }
+
+      // try {
+      //   let target = 200000;
+      //   let res = await axios.get(
+      //     "https://act.greenpeace.org/page/widget/399755"
+      //   );
+      //   let response = res.data;
+
+      //   let participation1 = response.data.rows[0].columns[4].value;
+      //   // console.log(participation1);
+      //   let participation2 = response.data.rows[1].columns[4].value;
+
+      //   this.total = parseInt(participation1) + parseInt(participation2);
+      //   this.percent = (this.total / target) * 100;
+
+      //   setTimeout(() => {
+      //     this.$emit("removeCover");
+      //   }, 1500);
+      // } catch (err) {
+      //   console.log(err);
+      // }
     },
     async postForm() {
       try {
