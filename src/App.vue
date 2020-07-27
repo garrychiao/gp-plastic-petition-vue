@@ -1,8 +1,8 @@
 <template>
   <div id="app"
     v-loading.fullscreen.lock="loading"
-    element-loading-spinner="el-icon-loading"
-    element-loading-background="rgba(245, 245, 245, 0.9)">
+
+    element-loading-background="rgba(0, 0, 0, 0.7)">
     <!-- cut into sections -->
     <!-- home -->
     <el-row id="home">
@@ -18,7 +18,10 @@
     </el-row>
     <!-- form -->
     <div class="form-container" >
-      <component :is="formComponent" v-on:thankYou="toThankYou"></component>
+      <component :is="formComponent"
+        v-on:thankYou="toThankYou"
+        v-on:displayCover="displayCover"
+        v-on:removeCover="removeCover"></component>
       <!-- <Form ></Form> -->
     </div>
     <!-- compare -->
@@ -109,10 +112,13 @@ export default {
       const firstScrollTo = scroller();
       firstScrollTo('#form-container');
     },
+    displayCover () {
+      this.loading = true;
+    },
     removeCover() {
-      setTimeout(() => {
+      // setTimeout(() => {
         this.loading = false;
-      }, 3000);
+      // }, 3000);
     },
   },
   created() {
@@ -151,9 +157,5 @@ body {
     z-index: 100;
     /* border: 1px solid black; */
   }
-}
-
-#mc-form {
-  display: none;
 }
 </style>

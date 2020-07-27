@@ -25,7 +25,7 @@ And start to compile the first time.
 yarn build
 ```
 
-2. Upload the compiled folder `docs` to your accessible public server. Which can be accessed by URL `https://YOUR_PUBLIC_URL/static/{THE_STATIC_FILES}`
+2. Upload the compiled folder `builds` to your accessible public server. Which can be accessed by URL `https://YOUR_PUBLIC_URL/static/{THE_STATIC_FILES}`
 
 3. Compile again in order to generate the pre-rendered HTML.
 
@@ -33,7 +33,7 @@ yarn build
 yarn build
 ```
 
-4. Now the `docs/index.html` is a pre-rendered HTML that you can move it to anywhere.
+4. Now the `builds/index.html` is a pre-rendered HTML that you can move it to anywhere.
 
 ### Lints and fixes files
 ```

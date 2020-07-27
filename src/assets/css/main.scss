@@ -2,33 +2,36 @@ $primary-color: #eb9062;
 $secondary-color: #644837;
 
 @font-face {
-    font-family: EngGoth;
+    font-family: 'Noto Sans TC', sans-serif;
     font-display: auto;
-    src: url('../fonts/EngGoth.ttf');
+    // src: url('../fonts/EngGoth.ttf');
 }
 
 @font-face {
     font-family: NotoSansCJKtc-Regular;
+    font-family: 'Noto Sans TC', sans-serif;
     font-display: auto;
-    src: url('../fonts/NotoSansCJKtc-Regular.otf');
+    // src: url('../fonts/NotoSansCJKtc-Regular.otf');
 }
 
 @font-face {
     font-family: NotoSansCJKtc-Medium;
+    font-family: 'Noto Sans TC', sans-serif;
     font-display: auto;
-    src: url('../fonts/NotoSansCJKtc-Medium.otf');
+    // src: url('../fonts/NotoSansCJKtc-Medium.otf');
 }
 
 .EngGoth {
-    font-family: EngGoth;
+    font-family: EngGoth, sans-serif;
 }
 
 .NotoSansCJKtc-Regular {
-    font-family: NotoSansCJKtc-Regular !important;
+    font-family: NotoSansCJKtc-Regular, sans-serif !important;
 }
 
 .NotoSansCJKtc-Medium {
-    font-family: NotoSansCJKtc-Medium;
+    font-family: NotoSansCJKtc-Medium, sans-serif;
+    font-weight: bold;
 }
 
 .inlight {
@@ -40,8 +43,8 @@ html {
 }
 
 * {
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important; 
-    -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important; 
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
+    -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important;
     outline: none !important;
 }
 
@@ -65,7 +68,7 @@ html {
     .el-form-item__label {
         height: 20px !important;
     }
-    .el-form-item__error {   
+    .el-form-item__error {
         padding-top: unset;
         padding-left: 10px;
     }
@@ -98,7 +101,7 @@ html {
         font-size: inherit;
         line-height: 20px;
     }
-    .el-form-item__error {   
+    .el-form-item__error {
         padding-top: unset;
         padding-left: 10px;
     }
@@ -111,7 +114,7 @@ html {
     font-family: NotoSansCJKtc-Regular;
 }
 
-.el-form-item__error {   
+.el-form-item__error {
     padding-top: unset;
     padding-left: 10px;
 }
@@ -131,7 +134,7 @@ html {
     line-height: 20px;
 }
 .el-form-item__label {
-    font-size: inherit;   
+    font-size: inherit;
 }
 
 .el-input__inner {

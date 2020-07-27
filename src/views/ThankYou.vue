@@ -41,8 +41,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   name: 'Blank',
   props: {
@@ -79,38 +77,18 @@ export default {
   },
   methods: {
     async getPetitionNumber() {
-      if (JS_VARS) { // direct read from js var
-        const {numResponses, numGoalResponses} = JS_VARS
+      let numSignupTarget = parseInt(document.querySelector('input[name="numSignupTarget"]').value, 10),
+        numResponses = parseInt(document.querySelector('input[name="numResponses"]').value, 10)
 
-        this.total = numResponses
-        this.percent = numResponses/numGoalResponses*100
-        this.goal = numGoalResponses
-      } else {
-        this.total = 1000
-        this.percent = 0.5
-        this.goal = 2000
-      }
+      // use the default values if something wrong
+      numSignupTarget = numSignupTarget || 50000
+      numResponses = numResponses || 21346
 
-      // try {
-      //   let target = 200000;
-      //   let res = await axios.get('https://act.greenpeace.org/page/widget/399755');
-      //   let response = res.data;
+      numResponses += 1 // add this user
 
-      //   let participation1 = response.data.rows[0].columns[4].value;
-      //   // console.log(participation1);
-      //   let participation2 = response.data.rows[1].columns[4].value;
-
-      //   this.total = parseInt(participation1) + parseInt(participation2);
-      //   this.percent = this.total / target * 100;
-
-      //   // console.log(total);
-
-      //   setTimeout(() => {
-      //     this.$emit('removeCover');
-      //   }, 1500);
-      // } catch (err) {
-      //   console.log(err);
-      // }
+      this.total = numResponses
+      this.percent = numResponses/numSignupTarget*100
+      this.goal = numSignupTarget
     },
     share() {
       let title = '超市減塑，誰當先鋒 | 綠色和平'

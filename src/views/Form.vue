@@ -119,7 +119,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import dayjs from "dayjs";
 const qs = require("qs");
 
@@ -216,88 +215,69 @@ export default {
           return false;
         }
         this.yahooADTracking();
-        this.$emit("thankYou");
+        // this.$emit("thankYou");
         this.postForm();
       });
     },
     async getPetitionNumber() {
-      if (JS_VARS) { // direct read from js var
-        const {numResponses, numGoalResponses} = JS_VARS
+      let numSignupTarget = parseInt(document.querySelector('input[name="numSignupTarget"]').value, 10),
+        numResponses = parseInt(document.querySelector('input[name="numResponses"]').value, 10)
 
-        this.total = numResponses
-        this.percent = numResponses/numGoalResponses*100
-        this.goal = numGoalResponses
-      } else {
-        this.total = 1000
-        this.percent = 0.5
-        this.goal = 2000
-      }
+      // use the default values if something wrong
+      numSignupTarget = numSignupTarget || 50000
+      numResponses = numResponses || 21346
 
-      // try {
-      //   let target = 200000;
-      //   let res = await axios.get(
-      //     "https://act.greenpeace.org/page/widget/399755"
-      //   );
-      //   let response = res.data;
-
-      //   let participation1 = response.data.rows[0].columns[4].value;
-      //   // console.log(participation1);
-      //   let participation2 = response.data.rows[1].columns[4].value;
-
-      //   this.total = parseInt(participation1) + parseInt(participation2);
-      //   this.percent = (this.total / target) * 100;
-
-      //   setTimeout(() => {
-      //     this.$emit("removeCover");
-      //   }, 1500);
-      // } catch (err) {
-      //   console.log(err);
-      // }
+      this.total = numResponses
+      this.percent = numResponses/numSignupTarget*100
+      this.goal = numSignupTarget
     },
     async postForm() {
-      try {
-        let year = dayjs(this.ruleForm.yearOfBirth).format("DD/MM/YYYY");
-
-        let formData = new URLSearchParams();
-
-        let mcFields = ["LeadSource", "PetitionIssueType", "CampaignId", "UtmSource", "DonationPageUrl"]
-        mcFields.forEach(s => {
-          formData.append(s, document.querySelector("[name="+s+"]").value);
-          console.log('use', s, document.querySelector("[name="+s+"]").value)
-        })
+      let $ = (selector) => document.querySelector(selector),
+        $all = (selector) => document.querySelectorAll(selector)
 
 
-        // formData.append("sessionId", "2b3ede609e844beebee2571434f15a36-server9800");
-        formData.append("Email", this.ruleForm.email);
-        formData.append("LastName", this.ruleForm.lastName);
-        formData.append("FirstName", this.ruleForm.firstName);
-        formData.append("MobilePhone", this.ruleForm.phoneNumber);
-        formData.append("Birthdate", year);
-        formData.append("OptIn", this.ruleForm.moreInfo);
-        // formData.append(
-        //   "supporter.NOT_TAGGED_19",
-        //   this.ruleForm.lastName.trim() + this.ruleForm.firstName.trim()
-        // );
-        // formData.append("supporter.NOT_TAGGED_28", "TW");
+      this.$emit("displayCover");
 
-        console.log('formData', JSON.stringify(Object.fromEntries(formData)));
+      // modify the original form
+      $('#mc-form [name="Email"]').value = this.ruleForm.email
+      $('#mc-form [name="LastName"]').value = this.ruleForm.lastName
+      $('#mc-form [name="FirstName"]').value = this.ruleForm.firstName
+      $('#mc-form [name="MobilePhone"]').value = this.ruleForm.phoneNumber
+      $('#mc-form [name="OptIn"]').value = this.ruleForm.moreInfo
+      $('#mc-form [name="Birthdate"]').value = dayjs(this.ruleForm.yearOfBirth).format("YYYY-MM-DD");
 
-        let mcFormUrl = document.querySelector("#mc-form").action;
-        let res = await axios.post(
-          mcFormUrl.indexOf(window.location.hostname)>-1 ?
-            mcFormUrl:
-            "https://cors-anywhere.small-service.gpeastasia.org/"+mcFormUrl
-          ,
-          formData,
-          { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
-        );
-        let response = res.data;
+      // collect values from form
+      let formData = new FormData();
+      $all("#mc-form input").forEach(function (el, idx) {
+        let v = null
+        if (el.type==="checkbox") {
+          v = el.checked
+        } else {
+          v = el.value
+        }
 
-        this.$emit("thankYou");
-      } catch (err) {
+        formData.append(el.name, v)
+        console.log('use', el.name, v)
+      })
+
+      return fetch($("#mc-form").action, {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(response => {
+        if (response) {
+          console.log('response', response)
+          this.$emit("removeCover");
+          this.$emit("thankYou");
+        }
+      })
+      .catch(error => {
+        this.$emit("removeCover");
         console.log(err);
-      }
+      })
     },
+
     yahooADTracking() {
       console.log('yahooADTracking')
       window.dotq = window.dotq || [];
